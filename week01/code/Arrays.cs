@@ -1,33 +1,63 @@
 public static class Arrays
 {
-    /// <summary>
-    /// This function will produce an array of size 'length' starting with 'number' followed by multiples of 'number'.  For 
-    /// example, MultiplesOf(7, 5) will result in: {7, 14, 21, 28, 35}.  Assume that length is a positive
-    /// integer greater than 0.
-    /// </summary>
-    /// <returns>array of doubles that are the multiples of the supplied number</returns>
+    // <summary>
+    // Step-by-step plan to solve the problem:
+    // 1. Create an array of doubles with the size equal to 'length'.
+    // 2. Use a loop to calculate each multiple of 'number'.
+    //    - The first multiple is number * 1, the second is number * 2, and so on.
+    // 3. Store each calculated multiple in the corresponding index of the array.   
+    // 4. Return the completed array.
+    
     public static double[] MultiplesOf(double number, int length)
+
+    // create an array of doubles with the size equal to 'length'.
     {
-        // TODO Problem 1 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
-
-        return []; // replace this return statement with your own
+        double[] multiples = new double[length];
+        // Use a loop to calculate each multiple of 'number'.
+        for (int i = 0; i < length; i++)
+        // The first multiple is number * 1, the second is number * 2, and so on.
+        {
+            multiples[i] = number * (i + 1);
+            // Store each calculated multiple in the corresponding index of the array.
+        }
+        return multiples;
     }
+    
 
-    /// <summary>
-    /// Rotate the 'data' to the right by the 'amount'.  For example, if the data is 
-    /// List<int>{1, 2, 3, 4, 5, 6, 7, 8, 9} and an amount is 3 then the list after the function runs should be 
-    /// List<int>{7, 8, 9, 1, 2, 3, 4, 5, 6}.  The value of amount will be in the range of 1 to data.Count, inclusive.
-    ///
-    /// Because a list is dynamic, this function will modify the existing data list rather than returning a new list.
-    /// </summary>
+/// Step-by-step plan to solve the problem:
+/// 1. Get the number of elements in the list.
+/// 2. Calculate the index where the list will be split for rotation.
+/// 3. Create a temporary list to store the rotated values. 
+/// 4. Add the last 'amount' elements from the original list to the front of the temporary list.
+/// 5. Add the remaining elements from the original list to the temporary list.
+/// 6. Clear the original list and copy the contents of the temporary list back into it.
+
+
     public static void RotateListRight(List<int> data, int amount)
     {
-        // TODO Problem 2 Start
-        // Remember: Using comments in your program, write down your process for solving this problem
-        // step by step before you write the code. The plan should be clear enough that it could
-        // be implemented by another person.
+        // Get the number of elements in the list
+        int count = data.Count;
+
+        //  Calculate where to split the list
+        int splitIndex = count - amount;
+
+        // Create a temporary list to store rotated values
+        List<int> rotated = new List<int>();
+
+        //  Add the last 'amount' elements to the front
+        for (int i = splitIndex; i < count; i++)
+        {
+            rotated.Add(data[i]);
+        }
+
+        //  Add the remaining elements
+        for (int i = 0; i < splitIndex; i++)
+        {
+            rotated.Add(data[i]);
+        }
+
+        // Replace original list contents
+        data.Clear();
+        data.AddRange(rotated);
     }
 }
